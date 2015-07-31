@@ -1,0 +1,26 @@
+{% extends "checkout/checkout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Payment method" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=3 %}
+{% endblock %}
+
+{% block checkout_title %}{% trans "choose payment method" %}{% endblock %}
+
+{% block order_contents %}{% endblock %}
+{% block shipping_address %}{% endblock %}
+{% block shipping_method %}{% endblock %}
+{% block payment_method %}
+    <ul>
+        {% if anon_checkout_allowed or request.user.is_authenticated %}
+            <li>
+                <a href="/checkout/payment-details/alipay_warrant"><img src="/media/images/165x58.png" align="left" style="margin-right:7px;"></a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
